@@ -1,14 +1,9 @@
-package data.models
+package data.dto.requests
 
 import com.google.gson.annotations.SerializedName
-import data.models.Sport
-import data.models.SportRank
-import java.util.*
 import kotlin.collections.HashMap
 
-data class User(
-        @SerializedName("user_id")
-        val userId: String,
+data class UserRequest (
         @SerializedName("first_name")
         val firstName: String? = null,
         @SerializedName("middle_name")
@@ -22,7 +17,7 @@ data class User(
         @SerializedName("email")
         val email: String? = null,
         @SerializedName("birth_date")
-        val birthDate: Date? = null,
+        val birthDate: String? = null,
         @SerializedName("sport_ranks")
-        val sportRanks: HashMap<Sport, String>? = null
+        val sportRanks: HashMap<String, String>? = null
 )

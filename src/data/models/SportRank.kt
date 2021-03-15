@@ -1,4 +1,4 @@
-package com.rodionov.data.models
+package data.models
 
 enum class SportRank {
 
