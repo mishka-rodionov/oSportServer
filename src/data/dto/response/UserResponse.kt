@@ -3,6 +3,8 @@ package data.dto.response
 import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
+        @SerializedName("id")
+        val id: String,
         @SerializedName("first_name")
         val firstName: String? = null,
         @SerializedName("middle_name")
