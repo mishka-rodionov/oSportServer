@@ -3,9 +3,11 @@ package data.models
 data class FinishListItem(
         val id: String,
         val userId: String,
-        val startTime: Float,
-        val finishTime: Float,
-        val resultTime: Float,
+        val competitionId: String,
+        val startTime: Long,
+        val finishTime: Long,
+        val resultTime: Long,
+        val splits: List<Long>,
         val absolutePlace: Int,
         val placeInCategory: Int,
         val description: String

@@ -1,6 +1,5 @@
 package data.entities
 
-import data.entities.StartListEntity.references
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
 
