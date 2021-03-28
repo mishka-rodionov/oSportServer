@@ -4,6 +4,9 @@ import com.google.gson.Gson
 import data.dto.requests.UserRequest
 import data.models.Sport
 import data.models.SportRank
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
+import java.util.concurrent.ThreadPoolExecutor
 
 fun main(args: Array<String>): Unit {
     val json = Gson().toJson(UserRequest(sportRanks = hashMapOf(
@@ -13,6 +16,7 @@ fun main(args: Array<String>): Unit {
     println("json = $json")
     val user = Gson().fromJson<UserRequest>(json)
     println("user = $user")
+
 
 //    embeddedServer(Netty, 8080) {
 //        println("database = ")
@@ -35,4 +39,3 @@ fun main(args: Array<String>): Unit {
 //
 //    }.start(wait = true)
 }
-

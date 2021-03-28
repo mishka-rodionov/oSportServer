@@ -1,12 +1,13 @@
 package data.entities
 
 import org.jetbrains.exposed.sql.Column
+import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 
 object FinishListEntity: Table(name = "finish_lists") {
     val id: Column<String> = text("id")
     val userId: Column<String> = text("user_id")
-    val competitionId: Column<String> = text("competition_id").references(CompetitionEntity.id)
+    val competitionId: Column<String> = text("competition_id").references(ref = CompetitionEntity.id, onDelete = ReferenceOption.CASCADE, onUpdate = ReferenceOption.CASCADE)
     val startTime: Column<Long> = long("start_time")
     val finishTime: Column<Long> = long("finish_time")
     val resultTime: Column<Long> = long("result_time")
