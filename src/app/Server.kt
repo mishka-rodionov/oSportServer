@@ -1,15 +1,20 @@
 package app
 
 import com.google.gson.Gson
+import data.dao.setNewUser
 import data.dto.requests.UserRequest
 import data.models.Sport
 import data.models.SportRank
+import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.auth.Authentication
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.jetty.Jetty
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
+import io.ktor.request.receive
+import io.ktor.response.respond
+import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -43,7 +48,10 @@ fun main(args: Array<String>): Unit {
         }
 
         routing {
-
+            post("/user/new") {
+                val user = setNewUser(call.receive())
+                call.respond(user)
+            }
         }
 
     }.start(wait = true)
