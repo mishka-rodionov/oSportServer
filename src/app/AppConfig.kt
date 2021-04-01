@@ -1,14 +1,16 @@
 package app
 
+import app.Settings.SERVER_PORT
 import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.auth.Authentication
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
+import io.ktor.routing.routing
 import io.ktor.server.engine.*
 import io.ktor.server.netty.Netty
-
-const val SERVER_PORT = 8080
+import routes.competitions
+import routes.users
 
 @EngineAPI
 fun setup(): BaseApplicationEngine {
@@ -33,5 +35,9 @@ fun Application.mainModule() {
 
     install(ContentNegotiation) {
         gson()
+    }
+    routing {
+        users()
+        competitions()
     }
 }
