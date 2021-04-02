@@ -5,30 +5,22 @@ import data.entities.UserEntity
 import data.models.User
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.util.*
 
-class UserDaoImpl: UserDao {
-    override fun setUser(user: User) {
-        val userId = UUID.randomUUID().toString()
+class UserDaoImpl : UserDao {
+    override fun setUser(userEntity: User) {
         transaction {
             UserEntity.insert {
-                it[id] = userId
-                it[firstName] = user.firstName.toString()
-                it[middleName] = user.middleName.toString()
-                it[lastName] = user.lastName.toString()
-                it[phoneCountryPrefix] = user.phoneCountryPrefix.toString()
-                it[phoneNumber] = user.phoneNumber.toString()
-                it[email] = user.email.toString()
-                it[birthDate] = user.birthDate.toString()
-                it[sportRanks] = Gson().toJson(user.sportRanks)
+                it[id] = userEntity.id
+                it[firstName] = userEntity.firstName.toString()
+                it[middleName] = userEntity.middleName.toString()
+                it[lastName] = userEntity.lastName.toString()
+                it[phoneCountryPrefix] = userEntity.phoneCountryPrefix.toString()
+                it[phoneNumber] = userEntity.phoneNumber.toString()
+                it[email] = userEntity.email.toString()
+                it[birthDate] = userEntity.birthDate.toString()
+                it[sportRanks] = Gson().toJson(userEntity.sportRanks)
             }
         }
-//        return userRequest.run {
-//            User(
-//                id = userId,
-//                firstName, middleName, lastName, phoneCountryPrefix, phoneNumber, email
-//            )
-//        }
     }
 }
 

@@ -1,5 +1,7 @@
 package domain
 
-interface UserRepository {
+import data.models.User
 
+interface UserRepository {
+    fun setNewUser(newUser: User)
 }

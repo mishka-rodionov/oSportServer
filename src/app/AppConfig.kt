@@ -1,6 +1,9 @@
 package app
 
 import app.Settings.SERVER_PORT
+import app.di.daoModule
+import app.di.repositoryModule
+import domain.UserRepository
 import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.auth.Authentication
@@ -9,6 +12,8 @@ import io.ktor.gson.gson
 import io.ktor.routing.routing
 import io.ktor.server.engine.*
 import io.ktor.server.netty.Netty
+import org.kodein.di.Kodein
+import org.kodein.di.generic.instance
 import routes.competitions
 import routes.users
 
@@ -30,6 +35,13 @@ fun server(engine: ApplicationEngineFactory<BaseApplicationEngine,
 }
 
 fun Application.mainModule() {
+    val kodein = Kodein{
+        import(repositoryModule)
+        import(daoModule)
+    }
+
+    val userRepository by kodein.instance<UserRepository>()
+
     install(Authentication) {
     }
 
@@ -37,7 +49,7 @@ fun Application.mainModule() {
         gson()
     }
     routing {
-        users()
+        users(userRepository)
         competitions()
     }
 }
