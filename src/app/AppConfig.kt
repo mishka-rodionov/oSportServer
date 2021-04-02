@@ -3,6 +3,7 @@ package app
 import app.Settings.SERVER_PORT
 import app.di.daoModule
 import app.di.repositoryModule
+import domain.CompetitionRepository
 import domain.UserRepository
 import io.ktor.application.Application
 import io.ktor.application.install
@@ -41,6 +42,7 @@ fun Application.mainModule() {
     }
 
     val userRepository by kodein.instance<UserRepository>()
+    val competitionRepository by kodein.instance<CompetitionRepository>()
 
     install(Authentication) {
     }
@@ -50,6 +52,6 @@ fun Application.mainModule() {
     }
     routing {
         users(userRepository)
-        competitions()
+        competitions(competitionRepository)
     }
 }
