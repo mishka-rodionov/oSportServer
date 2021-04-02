@@ -12,15 +12,13 @@ import io.ktor.routing.post
 
 fun Routing.competitions(competitionRepository: CompetitionRepository) {
     post(COMPETITION_NEW) {
-//        val competition = CompetitionMapper.toModel(
-//            competitionRequest = call.receive()
-//        )
-//        println("competition = $competition")
         call.respond(
             CommonMapper.toIdDto(
-                id = competitionRepository.createNewCompetition( CompetitionMapper.toModel(
-                    competitionRequest = call.receive()
-                ) )
+                id = competitionRepository.createNewCompetition(
+                    CompetitionMapper.toModel(
+                        competitionRequest = call.receive()
+                    )
+                )
             )
         )
     }
