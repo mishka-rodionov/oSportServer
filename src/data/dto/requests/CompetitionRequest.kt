@@ -1,6 +1,7 @@
 package data.dto.requests
 
 import com.google.gson.annotations.SerializedName
+import data.dto.OrganizerDto
 import data.models.CompetitionState
 import data.models.Place
 import data.models.Sport
@@ -17,7 +18,7 @@ data class CompetitionRequest(
     @SerializedName("place")
     val place: Place,
     @SerializedName("organizers")
-    val organizers: List<String>,
+    val organizers: List<OrganizerDto>,
     @SerializedName("description")
     val description: String? = null
 )

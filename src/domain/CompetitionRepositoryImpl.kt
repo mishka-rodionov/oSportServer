@@ -9,7 +9,7 @@ class CompetitionRepositoryImpl(
 ): CompetitionRepository {
 
     override fun createNewCompetition(newCompetition: Competition) : String {
-        newCompetition.id = UUID.randomUUID().toString()
+//        newCompetition.id = UUID.randomUUID().toString()
         competitionDao.setCompetition(newCompetition)
         return newCompetition.id
     }

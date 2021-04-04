@@ -6,7 +6,7 @@ object Settings {
     const val DB_USERNAME = "postgres"
     const val DB_PASSWORD = "rm1989anm"
 
-    /***/
+    /** Server settings*/
     const val SERVER_PORT = 8080
 
     /** User Routes */
