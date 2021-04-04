@@ -1,11 +1,13 @@
 package data.dao
 
 import data.entities.CompetitionEntity
+import data.entities.OrganizerEntity
 import data.models.Competition
+import data.models.Organizer
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
-class CompetitionDaoImpl: CompetitionDao {
+class CompetitionDaoImpl : CompetitionDao {
 
     override fun setCompetition(competition: Competition) {
         transaction {
@@ -21,6 +23,18 @@ class CompetitionDaoImpl: CompetitionDao {
 //                it[startList] = competition.startList
 //                it[results] = competition.results
                 it[description] = competition.description.toString()
+            }
+        }
+    }
+
+    override fun setOrganizers(organizers: List<Organizer>) {
+        organizers.forEach { organizer ->
+            transaction {
+                OrganizerEntity.insert {
+                    it[userId] = organizer.userId
+                    it[competitionId] = organizer.competitionId
+                    it[organizerPosition] = organizer.position.name
+                }
             }
         }
     }

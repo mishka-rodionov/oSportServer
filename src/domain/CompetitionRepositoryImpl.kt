@@ -11,6 +11,7 @@ class CompetitionRepositoryImpl(
     override fun createNewCompetition(newCompetition: Competition) : String {
 //        newCompetition.id = UUID.randomUUID().toString()
         competitionDao.setCompetition(newCompetition)
+        competitionDao.setOrganizers(newCompetition.organizers)
         return newCompetition.id
     }
 }
