@@ -45,6 +45,8 @@ class CompetitionDaoImpl : CompetitionDao {
                     it[userId] = participant.userId
                     it[competitionId] = participant.competitionId
                     it[registrationDate] = Gson().toJson(participant.registrationDate)
+                    it[gender] = participant.gender.name
+                    it[group] = participant.group.name
                     it[isPaid] = participant.isPaid
                 }
             }

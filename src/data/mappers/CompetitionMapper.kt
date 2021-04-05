@@ -29,7 +29,7 @@ object CompetitionMapper {
 
     fun toParticipantModel(participantRequest: ParticipantRequest) = participantRequest.run {
         Participant(
-            userId, competitionId, DateTimeFormatter.parse(registrationDate), isPaid
+            userId, competitionId, DateTimeFormatter.parse(registrationDate), Gender.valueOf(gender), ParticipantGroup.valueOf(group), isPaid
         )
     }
 

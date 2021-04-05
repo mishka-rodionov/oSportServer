@@ -9,6 +9,10 @@ data class ParticipantRequest(
     val competitionId: String,
     @SerializedName("registration_date")
     val registrationDate: String,
+    @SerializedName("gender")
+    val gender: String,
+    @SerializedName("group")
+    val group: String,
     @SerializedName("is_paid")
     val isPaid: Boolean? = null
 )
