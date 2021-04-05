@@ -19,6 +19,8 @@ data class CompetitionRequest(
     val place: Place,
     @SerializedName("organizers")
     val organizers: List<OrganizerDto>,
+    @SerializedName("participants_groups")
+    val participantGroups: List<String>,
     @SerializedName("description")
     val description: String? = null
 )

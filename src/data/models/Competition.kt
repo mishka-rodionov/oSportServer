@@ -10,6 +10,7 @@ data class Competition(
         val sportType: Sport,
         val place: Place,
         val organizers: List<Organizer>,
+        val groups: List<ParticipantGroup>,
 //        val participants: List<Participant>? = null,
 //        val startList: List<Participant>? = null,
 //        val results: List<Participant>? = null,

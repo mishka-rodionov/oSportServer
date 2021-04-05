@@ -15,8 +15,10 @@ object CompetitionMapper {
         val newId = UUID.randomUUID().toString()
         Competition(
             id = newId,
-            Date(), state ?: CompetitionState.CREATED, mainImage, sportType, place, organizers.map{
+            Date(), state ?: CompetitionState.CREATED, mainImage, sportType, place, organizers.map {
                 toOrganizerModel(it, newId)
+            }, participantGroups.map {
+                ParticipantGroup.valueOf(it)
             }, description
         )
     }
@@ -29,7 +31,12 @@ object CompetitionMapper {
 
     fun toParticipantModel(participantRequest: ParticipantRequest) = participantRequest.run {
         Participant(
-            userId, competitionId, DateTimeFormatter.parse(registrationDate), Gender.valueOf(gender), ParticipantGroup.valueOf(group), isPaid
+            userId,
+            competitionId,
+            DateTimeFormatter.parse(registrationDate),
+            Gender.valueOf(gender),
+            ParticipantGroup.valueOf(group),
+            isPaid
         )
     }
 
