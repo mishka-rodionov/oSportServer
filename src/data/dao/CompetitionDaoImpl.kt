@@ -1,9 +1,12 @@
 package data.dao
 
+import com.google.gson.Gson
 import data.entities.CompetitionEntity
 import data.entities.OrganizerEntity
+import data.entities.ParticipantEntity
 import data.models.Competition
 import data.models.Organizer
+import data.models.Participant
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -18,10 +21,6 @@ class CompetitionDaoImpl : CompetitionDao {
                 it[mainImage] = competition.mainImage.toString()
                 it[sportType] = competition.sportType.sportId
                 it[place] = competition.place.toString()
-//                it[organizers] = competition.organizers
-//                it[participants] = competition.participants
-//                it[startList] = competition.startList
-//                it[results] = competition.results
                 it[description] = competition.description.toString()
             }
         }
@@ -34,6 +33,19 @@ class CompetitionDaoImpl : CompetitionDao {
                     it[userId] = organizer.userId
                     it[competitionId] = organizer.competitionId
                     it[organizerPosition] = organizer.position.name
+                }
+            }
+        }
+    }
+
+    override fun setParticipants(participants: List<Participant>) {
+        participants.forEach { participant ->
+            transaction {
+                ParticipantEntity.insert {
+                    it[userId] = participant.userId
+                    it[competitionId] = participant.competitionId
+                    it[registrationDate] = Gson().toJson(participant.registrationDate)
+                    it[isPaid] = participant.isPaid
                 }
             }
         }

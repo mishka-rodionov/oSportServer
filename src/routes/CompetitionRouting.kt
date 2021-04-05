@@ -1,6 +1,7 @@
 package routes
 
 import app.Settings.COMPETITION_NEW
+import app.Settings.PARTICIPANT_NEW
 import data.mappers.CommonMapper
 import data.mappers.CompetitionMapper
 import domain.CompetitionRepository
@@ -21,5 +22,9 @@ fun Routing.competitions(competitionRepository: CompetitionRepository) {
                 )
             )
         )
+    }
+
+    post(PARTICIPANT_NEW) {
+        
     }
 }

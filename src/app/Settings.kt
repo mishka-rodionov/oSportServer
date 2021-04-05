@@ -14,5 +14,6 @@ object Settings {
 
     /** Competition Routes*/
     const val COMPETITION_NEW = "/competition/new"
+    const val PARTICIPANT_NEW = "competition/participant/new"
 
 }
