@@ -1,11 +1,11 @@
 package data.mappers
 
+import app.utils.DateTimeFormatter
 import data.dto.OrganizerDto
 import data.dto.requests.CompetitionRequest
-import data.models.Competition
-import data.models.CompetitionState
-import data.models.Organizer
-import data.models.OrganizersPosition
+import data.dto.requests.ParticipantRequest
+import data.models.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 object CompetitionMapper {
@@ -21,9 +21,15 @@ object CompetitionMapper {
         )
     }
 
-    fun toOrganizerModel(organizerDto: OrganizerDto, competitionId: String) = organizerDto.run {
+    private fun toOrganizerModel(organizerDto: OrganizerDto, competitionId: String) = organizerDto.run {
         Organizer(
             userId, competitionId, OrganizersPosition.valueOf(organizerPosition)
+        )
+    }
+
+    fun toParticipantModel(participantRequest: ParticipantRequest) = participantRequest.run {
+        Participant(
+            userId, competitionId, DateTimeFormatter.parse(registrationDate), isPaid
         )
     }
 

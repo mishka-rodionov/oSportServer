@@ -2,6 +2,7 @@ package routes
 
 import app.Settings.COMPETITION_NEW
 import app.Settings.PARTICIPANT_NEW
+import data.dto.requests.ParticipantRequest
 import data.mappers.CommonMapper
 import data.mappers.CompetitionMapper
 import domain.CompetitionRepository
@@ -25,6 +26,8 @@ fun Routing.competitions(competitionRepository: CompetitionRepository) {
     }
 
     post(PARTICIPANT_NEW) {
-        
+        competitionRepository.addParticipants(
+            (call.receive() as List<ParticipantRequest>).map(CompetitionMapper::toParticipantModel)
+        )
     }
 }
