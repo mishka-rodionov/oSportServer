@@ -1,6 +1,7 @@
 package domain
 
 import data.dao.CompetitionDao
+import data.mappers.CompetitionMapper
 import data.models.Competition
 import data.models.Participant
 
@@ -19,11 +20,15 @@ class CompetitionRepositoryImpl(
     }
 
     override fun generateStartLists(competitionId: String) {
+        val startInterval = competitionDao.getCompetition(competitionId).startInterval
         val listOfParticipants = competitionDao.getParticipants(competitionId)
         val setOfParticipantGroup = listOfParticipants.map { it.group }.toHashSet()
         setOfParticipantGroup.forEach { group ->
             val currentGroup = listOfParticipants.filter { it.group == group }
-            currentGroup.shuffled()
+            competitionDao.setStartList(currentGroup.shuffled().mapIndexed { index, participant ->
+                CompetitionMapper.toStartListItem(participant = participant, startTime = index * startInterval)
+            }
+            )
         }
     }
 }

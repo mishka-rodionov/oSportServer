@@ -14,13 +14,15 @@ data class CompetitionRequest(
     @SerializedName("main_request")
     val mainImage: String? = null,
     @SerializedName("sport_type")
-    val sportType: Sport,
+    val sportType: String,
     @SerializedName("place")
     val place: Place,
+    @SerializedName("start_interval")
+    val startInterval: Float,
     @SerializedName("organizers")
     val organizers: List<OrganizerDto>,
-    @SerializedName("participants_groups")
-    val participantGroups: List<String>,
+//    @SerializedName("participants_groups")
+//    val participantGroups: List<String>,
     @SerializedName("description")
     val description: String? = null
 )

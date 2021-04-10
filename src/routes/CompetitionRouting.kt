@@ -1,6 +1,7 @@
 package routes
 
 import app.Settings.COMPETITION_NEW
+import app.Settings.GENERATE_START_LISTS
 import app.Settings.PARTICIPANT_NEW
 import data.dto.requests.ParticipantRequest
 import data.mappers.CommonMapper
@@ -29,5 +30,9 @@ fun Routing.competitions(competitionRepository: CompetitionRepository) {
         competitionRepository.addParticipants(
             (call.receive() as List<ParticipantRequest>).map(CompetitionMapper::toParticipantModel)
         )
+    }
+
+    post(GENERATE_START_LISTS) {
+        competitionRepository.generateStartLists(call.receive())
     }
 }
