@@ -5,5 +5,6 @@ data class StartListItem(
         val userId: String,
         val competitionId: String,
         val startTime: Long,
+        val participantGroup: ParticipantGroup,
         val description: String
 )

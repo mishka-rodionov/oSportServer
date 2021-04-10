@@ -10,5 +10,6 @@ data class FinishListItem(
         val splits: List<Long>,
         val absolutePlace: Int,
         val placeInCategory: Int,
+        val participantGroup: ParticipantGroup,
         val description: String
 )
