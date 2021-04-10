@@ -4,10 +4,12 @@ import com.google.gson.Gson
 import data.entities.CompetitionEntity
 import data.entities.OrganizerEntity
 import data.entities.ParticipantEntity
+import data.mappers.CompetitionMapper
 import data.models.Competition
 import data.models.Organizer
 import data.models.Participant
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class CompetitionDaoImpl : CompetitionDao {
@@ -51,5 +53,11 @@ class CompetitionDaoImpl : CompetitionDao {
                 }
             }
         }
+    }
+
+    override fun getParticipants(competitionId: String): List<Participant> {
+        return transaction {
+            ParticipantEntity.select { ParticipantEntity.competitionId eq competitionId }
+        }.map(CompetitionMapper::toParticipantModel)
     }
 }

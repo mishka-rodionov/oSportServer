@@ -4,7 +4,9 @@ import app.utils.DateTimeFormatter
 import data.dto.OrganizerDto
 import data.dto.requests.CompetitionRequest
 import data.dto.requests.ParticipantRequest
+import data.entities.ParticipantEntity
 import data.models.*
+import org.jetbrains.exposed.sql.ResultRow
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,6 +39,17 @@ object CompetitionMapper {
             Gender.valueOf(gender),
             ParticipantGroup.valueOf(group),
             isPaid
+        )
+    }
+
+    fun toParticipantModel(row: ResultRow) = row.run {
+        Participant(
+            row[ParticipantEntity.userId],
+            row[ParticipantEntity.competitionId],
+            DateTimeFormatter.parse(row[ParticipantEntity.registrationDate]),
+            Gender.valueOf(row[ParticipantEntity.gender]),
+            ParticipantGroup.valueOf(row[ParticipantEntity.group]),
+            row[ParticipantEntity.isPaid]
         )
     }
 

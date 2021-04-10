@@ -7,5 +7,6 @@ interface CompetitionRepository {
 
     fun createNewCompetition(newCompetition: Competition) : String
     fun addParticipants(newParticipants: List<Participant>)
+    fun generateStartLists(competitionId: String)
 
 }
