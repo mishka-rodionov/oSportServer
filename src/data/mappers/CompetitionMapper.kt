@@ -8,6 +8,7 @@ import data.dto.requests.CompetitionRequest
 import data.dto.requests.ParticipantRequest
 import data.entities.CompetitionEntity
 import data.entities.ParticipantEntity
+import data.entities.StartListEntity
 import data.models.*
 import org.jetbrains.exposed.sql.ResultRow
 import java.text.SimpleDateFormat
@@ -86,6 +87,16 @@ object CompetitionMapper {
             startTime = startTime,
             participantGroup = group,
             description = ""
+        )
+    }
+
+    fun toStartListItem(row: ResultRow) = row.run {
+        StartListItem(
+            row[StartListEntity.userId],
+            row[StartListEntity.competitionId],
+            row[StartListEntity.startTime],
+            ParticipantGroup.valueOf(row[StartListEntity.participantGroup]),
+            row[StartListEntity.description]
         )
     }
 

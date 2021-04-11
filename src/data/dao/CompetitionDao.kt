@@ -16,4 +16,5 @@ interface CompetitionDao {
     fun getParticipants(competitionId: String): List<Participant>
 
     fun setStartList(startList: List<StartListItem>)
+    fun getStartList(competitionId: String): List<StartListItem>
 }

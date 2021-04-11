@@ -82,4 +82,10 @@ class CompetitionDaoImpl : CompetitionDao {
             }
         }
     }
+
+    override fun getStartList(competitionId: String): List<StartListItem> {
+        return transaction {
+            StartListEntity.select { StartListEntity.competitionId eq competitionId }.map(CompetitionMapper::toStartListItem)
+        }
+    }
 }

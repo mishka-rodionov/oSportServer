@@ -11,6 +11,6 @@ interface CompetitionRepository {
     fun addParticipants(newParticipants: List<Participant>)
     fun generateStartLists(competitionId: String)
     fun getParticipants(competitionId: String): List<Participant>
-    fun getStartList(competitionId: String, participantGroup: ParticipantGroup): List<StartListItem>
+    fun getStartList(competitionId: String): List<StartListItem>
 
 }

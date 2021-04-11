@@ -36,7 +36,5 @@ class CompetitionRepositoryImpl(
 
     override fun getParticipants(competitionId: String) = competitionDao.getParticipants(competitionId)
 
-    override fun getStartList(competitionId: String, participantGroup: ParticipantGroup): List<StartListItem> {
-        //TODO: get start list for current participant group
-    }
+    override fun getStartList(competitionId: String) = competitionDao.getStartList(competitionId)
 }

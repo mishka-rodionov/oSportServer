@@ -49,7 +49,7 @@ fun Routing.competitions(competitionRepository: CompetitionRepository) {
 
     post(GET_START_LIST) {
         call.respond(
-
+            competitionRepository.getStartList(call.receive())
         )
     }
 
