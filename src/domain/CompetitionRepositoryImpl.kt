@@ -4,6 +4,8 @@ import data.dao.CompetitionDao
 import data.mappers.CompetitionMapper
 import data.models.Competition
 import data.models.Participant
+import data.models.ParticipantGroup
+import data.models.StartListItem
 
 class CompetitionRepositoryImpl(
     private val competitionDao: CompetitionDao
@@ -33,4 +35,8 @@ class CompetitionRepositoryImpl(
     }
 
     override fun getParticipants(competitionId: String) = competitionDao.getParticipants(competitionId)
+
+    override fun getStartList(competitionId: String, participantGroup: ParticipantGroup): List<StartListItem> {
+        //TODO: get start list for current participant group
+    }
 }

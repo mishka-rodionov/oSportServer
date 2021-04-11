@@ -2,6 +2,8 @@ package domain
 
 import data.models.Competition
 import data.models.Participant
+import data.models.ParticipantGroup
+import data.models.StartListItem
 
 interface CompetitionRepository {
 
@@ -9,6 +11,6 @@ interface CompetitionRepository {
     fun addParticipants(newParticipants: List<Participant>)
     fun generateStartLists(competitionId: String)
     fun getParticipants(competitionId: String): List<Participant>
-    fun getStartList(competitionId: String)
+    fun getStartList(competitionId: String, participantGroup: ParticipantGroup): List<StartListItem>
 
 }
