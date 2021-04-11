@@ -31,4 +31,6 @@ class CompetitionRepositoryImpl(
             )
         }
     }
+
+    override fun getParticipants(competitionId: String) = competitionDao.getParticipants(competitionId)
 }
