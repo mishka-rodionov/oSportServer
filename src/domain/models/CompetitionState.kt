@@ -1,4 +1,4 @@
-package data.models
+package domain.models
 
 enum class CompetitionState {
 

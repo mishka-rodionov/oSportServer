@@ -6,10 +6,10 @@ import data.entities.OrganizerEntity
 import data.entities.ParticipantEntity
 import data.entities.StartListEntity
 import data.mappers.CompetitionMapper
-import data.models.Competition
-import data.models.Organizer
-import data.models.Participant
-import data.models.StartListItem
+import domain.models.Competition
+import domain.models.Organizer
+import domain.models.Participant
+import domain.models.StartListItem
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction

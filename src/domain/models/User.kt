@@ -1,4 +1,4 @@
-package data.models
+package domain.models
 
 import com.google.gson.annotations.SerializedName
 import java.util.*

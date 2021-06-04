@@ -1,6 +1,6 @@
 package data.dao
 
-import data.models.User
+import domain.models.User
 
 interface UserDao {
     fun setUser(userEntity: User)

@@ -1,7 +1,7 @@
 package app.di
 
-import domain.CompetitionRepositoryImpl
-import domain.UserRepositoryImpl
+import data.repository.CompetitionRepositoryImpl
+import data.repository.UserRepositoryImpl
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance

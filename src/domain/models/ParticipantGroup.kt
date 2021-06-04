@@ -1,4 +1,4 @@
-package data.models
+package domain.models
 
 enum class ParticipantGroup {
     M10, M12, M14, M16, M18, M20, M21, M35, M40, M45, M50, M55, M60, M65, M70,

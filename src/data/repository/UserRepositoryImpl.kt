@@ -1,7 +1,9 @@
-package domain
+package data.repository
 
 import data.dao.UserDao
-import data.models.User
+import domain.UserRepository
+import domain.models.Login
+import domain.models.User
 
 class UserRepositoryImpl(
     private val userDao: UserDao
@@ -9,5 +11,9 @@ class UserRepositoryImpl(
 
     override fun setNewUser(newUser: User) {
         userDao.setUser(newUser)
+    }
+
+    override fun userLogin(loginParams: Login) {
+        
     }
 }

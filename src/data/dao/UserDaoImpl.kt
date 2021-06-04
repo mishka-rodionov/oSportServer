@@ -2,7 +2,7 @@ package data.dao
 
 import com.google.gson.Gson
 import data.entities.UserEntity
-import data.models.User
+import domain.models.User
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 

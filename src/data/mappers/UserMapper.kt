@@ -1,7 +1,7 @@
 package data.mappers
 
 import data.dto.requests.UserRequest
-import data.models.User
+import domain.models.User
 
 object UserMapper {
 

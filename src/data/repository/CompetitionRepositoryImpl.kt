@@ -1,11 +1,10 @@
-package domain
+package data.repository
 
 import data.dao.CompetitionDao
 import data.mappers.CompetitionMapper
-import data.models.Competition
-import data.models.Participant
-import data.models.ParticipantGroup
-import data.models.StartListItem
+import domain.CompetitionRepository
+import domain.models.Competition
+import domain.models.Participant
 
 class CompetitionRepositoryImpl(
     private val competitionDao: CompetitionDao
