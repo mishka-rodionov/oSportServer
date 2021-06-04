@@ -14,6 +14,6 @@ class UserRepositoryImpl(
     }
 
     override fun userLogin(loginParams: Login) {
-        
+        val user = userDao.getUser(loginParams.phone)
     }
 }

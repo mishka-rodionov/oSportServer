@@ -2,8 +2,10 @@ package data.dao
 
 import com.google.gson.Gson
 import data.entities.UserEntity
+import data.mappers.UserMapper
 import domain.models.User
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class UserDaoImpl : UserDao {
@@ -20,6 +22,12 @@ class UserDaoImpl : UserDao {
                 it[birthDate] = userEntity.birthDate.toString()
                 it[sportRanks] = Gson().toJson(userEntity.sportRanks)
             }
+        }
+    }
+
+    override fun getUser(phone: String): User {
+        return transaction {
+            UserMapper.toModel(UserEntity.select { UserEntity.phoneNumber eq phone }.first())
         }
     }
 }
