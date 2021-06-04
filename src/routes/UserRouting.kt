@@ -1,5 +1,6 @@
 package routes
 
+import app.Settings.USER_LOGIN
 import app.Settings.USER_REGISTER
 import data.mappers.CommonMapper
 import data.mappers.UserMapper
@@ -17,4 +18,9 @@ fun Routing.users(userRepository: UserRepository) {
         userRepository.setNewUser(UserMapper.toModel(call.receive(), userId))
         call.respond(CommonMapper.toIdDto(userId))
     }
+
+    post(USER_LOGIN) {
+
+    }
+
 }

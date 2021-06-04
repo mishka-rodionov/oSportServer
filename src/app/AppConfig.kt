@@ -3,11 +3,15 @@ package app
 import app.Settings.SERVER_PORT
 import app.di.daoModule
 import app.di.repositoryModule
+import data.auth.OSportConfig
+import data.auth.SimpleJwtSingleton
+import data.auth.checkExpiration
 import domain.CompetitionRepository
 import domain.UserRepository
 import io.ktor.application.Application
 import io.ktor.application.install
-import io.ktor.auth.Authentication
+import io.ktor.auth.*
+import io.ktor.auth.jwt.*
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.routing.routing
@@ -45,13 +49,26 @@ fun Application.mainModule() {
     val competitionRepository by kodein.instance<CompetitionRepository>()
 
     install(Authentication) {
+        jwt {
+            verifier(SimpleJwtSingleton.instance.verifier)
+            validate { credential ->
+                val ok: Boolean = (
+                        credential.payload.audience.contains(OSportConfig.instance.jwtAudience) &&
+                                checkExpiration(credential.payload)
+                        )
+                if (ok) JWTPrincipal(credential.payload) else null
+            }
+        }
     }
 
     install(ContentNegotiation) {
         gson()
     }
     routing {
+        authenticate {
+            this@routing.competitions(competitionRepository)
+        }
         users(userRepository)
-        competitions(competitionRepository)
+//        competitions(competitionRepository)
     }
 }
