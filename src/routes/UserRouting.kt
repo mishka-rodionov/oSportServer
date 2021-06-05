@@ -20,7 +20,7 @@ fun Routing.users(userRepository: UserRepository) {
     }
 
     post(USER_LOGIN) {
-
+        call.respond(userRepository.userLogin(call.receive()))
     }
 
 }

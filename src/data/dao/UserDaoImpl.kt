@@ -25,7 +25,7 @@ class UserDaoImpl : UserDao {
         }
     }
 
-    override fun getUser(phone: String): User {
+    override fun getUser(phone: String): User? {
         return transaction {
             UserMapper.toModel(UserEntity.select { UserEntity.phoneNumber eq phone }.first())
         }
