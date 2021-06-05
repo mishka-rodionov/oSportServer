@@ -24,7 +24,8 @@ object UserMapper {
             phoneCountryPrefix = row[UserEntity.phoneCountryPrefix],
             phoneNumber = row[UserEntity.phoneNumber],
             email = row[UserEntity.email],
-            birthDate = DateTimeFormatter.parse(row[UserEntity.birthDate]),
+//            birthDate = DateTimeFormatter.parse(row[UserEntity.birthDate]),
+            birthDate = null,
             sportRanks = null
         )
     }

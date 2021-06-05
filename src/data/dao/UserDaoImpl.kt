@@ -26,6 +26,9 @@ class UserDaoImpl : UserDao {
     }
 
     override fun getUser(phone: String): User? {
+        println("getUser: phone = $phone")
+        val phoneNumber = phone.substring(2, phone.length)
+        println("getUser: phoneNumber = $phoneNumber")
         return transaction {
             UserMapper.toModel(UserEntity.select { UserEntity.phoneNumber eq phone }.first())
         }
