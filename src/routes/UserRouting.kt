@@ -2,6 +2,8 @@ package routes
 
 import app.Settings.USER_LOGIN
 import app.Settings.USER_REGISTER
+import data.auth.ApiException
+import data.dto.requests.UserRequest
 import data.mappers.CommonMapper
 import data.mappers.UserMapper
 import domain.UserRepository
@@ -20,7 +22,12 @@ fun Routing.users(userRepository: UserRepository) {
     }
 
     post(USER_LOGIN) {
-        call.respond(userRepository.userLogin(call.receive()))
+        try {
+            call.respond(userRepository.userLogin(call.receive()))
+        } catch (e: ApiException) {
+            println("api exception")
+        }
+
     }
 
 }

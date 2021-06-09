@@ -22,5 +22,7 @@ data class User(
         @SerializedName("birth_date")
         val birthDate: Date? = null,
         @SerializedName("sport_ranks")
-        val sportRanks: HashMap<Sport, String>? = null
+        val sportRanks: HashMap<Sport, String>? = null,
+        val passwordHash: String,
+        val salt: String
 )

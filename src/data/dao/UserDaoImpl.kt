@@ -21,6 +21,8 @@ class UserDaoImpl : UserDao {
                 it[email] = userEntity.email.toString()
                 it[birthDate] = userEntity.birthDate.toString()
                 it[sportRanks] = Gson().toJson(userEntity.sportRanks)
+                it[passwordHash] = userEntity.passwordHash
+                it[salt] = userEntity.salt
             }
         }
     }
