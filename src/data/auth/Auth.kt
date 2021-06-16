@@ -17,6 +17,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 val UTF8 = Charsets.UTF_8
+val US_ASCII = Charsets.US_ASCII
 val CLAIM_USER_ID = "userId"
 val CLAIM_EXPIRE_TIMESTAMP = "expireTimestamp"
 val CLAIM_TOKEN_VERSION = "version"
@@ -28,7 +29,7 @@ fun calcPasswordHash(password: String, salt: String, algorithm: String): String 
         val md = MessageDigest.getInstance(algorithm)
         // md.reset()
         val text = salt + "$" + password
-        return md.digest(text.toByteArray()).toString(UTF8)
+        return md.digest(text.toByteArray()).toString(US_ASCII)
     } else {
         throw NoSuchAlgorithmException("unknown hashing algorithm: " + algorithm)
     }
