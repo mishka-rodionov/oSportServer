@@ -31,7 +31,7 @@ fun calcPasswordHash(password: String, salt: String, algorithm: String): String 
         val text = salt + "$" + password
         return md.digest(text.toByteArray()).toString(US_ASCII)
     } else {
-        throw NoSuchAlgorithmException("unknown hashing algorithm: " + algorithm)
+        throw NoSuchAlgorithmException("unknown hashing algorithm: $algorithm")
     }
 }
 
@@ -45,7 +45,7 @@ fun hashAsHex(hash: String): String {
 
 fun hashFromHex(hex: String): String {
     if (!hex.startsWith("0x")) {
-        throw Exception("hex string must start with 0x: " + hex)
+        throw Exception("hex string must start with 0x: $hex")
     }
     val buffer = mutableListOf<Byte>()
     var i = 2

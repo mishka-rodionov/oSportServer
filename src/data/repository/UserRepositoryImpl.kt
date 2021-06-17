@@ -21,7 +21,9 @@ class UserRepositoryImpl(
     override fun userLogin(loginParams: LoginRequest): LoginResponse {
         val user = userDao.getUser(loginParams.phone) ?: throw ApiException("user ${loginParams.phone} is not found")
 
-        val hash = calcPasswordHash(loginParams.password, "", "SHA-512")
+        val hash = calcPasswordHash(loginParams.password, user.salt, "SHA-512")
+        println("hash = $hash")
+        println("user.passwordHash = ${user.passwordHash}")
         if (hash != user.passwordHash) {
             println("incorrect password")
             throw ApiException("incorrect password")
