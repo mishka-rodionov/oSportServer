@@ -1,9 +1,8 @@
 package domain
 
-import data.models.Competition
-import data.models.Participant
-import data.models.ParticipantGroup
-import data.models.StartListItem
+import domain.models.Competition
+import domain.models.Participant
+import domain.models.StartListItem
 
 interface CompetitionRepository {
 

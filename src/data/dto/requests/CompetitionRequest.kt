@@ -2,9 +2,8 @@ package data.dto.requests
 
 import com.google.gson.annotations.SerializedName
 import data.dto.OrganizerDto
-import data.models.CompetitionState
-import data.models.Place
-import data.models.Sport
+import domain.models.CompetitionState
+import domain.models.Place
 
 data class CompetitionRequest(
     @SerializedName("date")

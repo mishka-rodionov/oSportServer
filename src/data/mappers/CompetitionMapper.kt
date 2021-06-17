@@ -9,9 +9,8 @@ import data.dto.requests.ParticipantRequest
 import data.entities.CompetitionEntity
 import data.entities.ParticipantEntity
 import data.entities.StartListEntity
-import data.models.*
+import domain.models.*
 import org.jetbrains.exposed.sql.ResultRow
-import java.text.SimpleDateFormat
 import java.util.*
 
 object CompetitionMapper {

@@ -1,4 +1,4 @@
-package data.models
+package domain.models
 
 data class StartListItem(
 //        val id: String,

@@ -1,4 +1,4 @@
-package data.models
+package domain.models
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
@@ -22,5 +22,9 @@ data class User(
         @SerializedName("birth_date")
         val birthDate: Date? = null,
         @SerializedName("sport_ranks")
-        val sportRanks: HashMap<Sport, String>? = null
+        val sportRanks: HashMap<Sport, String>? = null,
+        @SerializedName("password_hash")
+        val passwordHash: String,
+        @SerializedName("salt")
+        val salt: String
 )

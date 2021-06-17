@@ -13,5 +13,7 @@ object UserEntity : Table(name = "users") {
     val email: Column<String> = text("email")
     val birthDate: Column<String> = text("birth_date")
     val sportRanks: Column<String> = text("sport_ranks")
+    val passwordHash: Column<String> = text("password_hash")
+    val salt: Column<String> = text("salt")
     override val primaryKey = PrimaryKey(id, name = "pk_users")
 }

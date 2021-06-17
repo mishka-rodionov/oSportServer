@@ -1,9 +1,9 @@
 package data.dao
 
-import data.models.Competition
-import data.models.Organizer
-import data.models.Participant
-import data.models.StartListItem
+import domain.models.Competition
+import domain.models.Organizer
+import domain.models.Participant
+import domain.models.StartListItem
 
 interface CompetitionDao {
 
