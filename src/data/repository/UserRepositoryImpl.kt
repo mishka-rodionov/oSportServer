@@ -32,6 +32,6 @@ class UserRepositoryImpl(
         /* this token only identifies a user, but knows nothing about the user's rights */
 
         val idToken = SimpleJwtSingleton.instance.sign(user.id)
-        return LoginResponse(userId = user.id, phone = user.phoneCountryPrefix + user.phoneNumber, authToken = idToken)
+        return LoginResponse(userId = user.id, phonePrefix = user.phoneCountryPrefix, phone = user.phoneNumber, authToken = idToken)
     }
 }

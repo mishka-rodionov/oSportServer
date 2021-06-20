@@ -14,9 +14,9 @@ data class User(
         @SerializedName("last_name")
         val lastName: String? = null,
         @SerializedName("phone_country_prefix")
-        val phoneCountryPrefix: String? = null,
+        val phoneCountryPrefix: String,
         @SerializedName("phone_number")
-        val phoneNumber: String? = null,
+        val phoneNumber: String,
         @SerializedName("email")
         val email: String? = null,
         @SerializedName("birth_date")
