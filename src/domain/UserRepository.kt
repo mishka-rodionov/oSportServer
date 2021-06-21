@@ -7,4 +7,5 @@ import domain.models.User
 interface UserRepository {
     fun setNewUser(newUser: User)
     fun userLogin(loginParams: LoginRequest): LoginResponse
+    fun getUserById(id: String): User?
 }

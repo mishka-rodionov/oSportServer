@@ -3,6 +3,7 @@ package data.mappers
 import app.utils.DateTimeFormatter
 import data.auth.calcPasswordHash
 import data.dto.requests.UserRequest
+import data.dto.response.UserResponse
 import data.entities.UserEntity
 import domain.models.User
 import org.jetbrains.exposed.sql.ResultRow
@@ -32,6 +33,12 @@ object UserMapper {
             sportRanks = null,
             passwordHash = row[UserEntity.passwordHash],
             salt = row[UserEntity.salt]
+        )
+    }
+
+    fun toResponse(user: User) = user.run {
+        UserResponse(
+            id, firstName, middleName, lastName, phoneCountryPrefix, phoneNumber, email
         )
     }
 

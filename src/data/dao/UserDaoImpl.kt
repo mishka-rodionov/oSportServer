@@ -35,5 +35,10 @@ class UserDaoImpl : UserDao {
             UserMapper.toModel(UserEntity.select { UserEntity.phoneNumber eq phone }.first())
         }
     }
+
+    override fun getUserById(id: String) = transaction {
+        println("user id = $id")
+            UserMapper.toModel(UserEntity.select { UserEntity.id eq id }.first())
+        }
 }
 

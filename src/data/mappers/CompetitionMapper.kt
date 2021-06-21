@@ -1,6 +1,6 @@
 package data.mappers
 
-import app.fromJson
+import app.extensions.fromJson
 import app.utils.DateTimeFormatter
 import com.google.gson.Gson
 import data.dto.OrganizerDto

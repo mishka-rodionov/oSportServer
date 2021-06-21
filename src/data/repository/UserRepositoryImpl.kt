@@ -34,4 +34,6 @@ class UserRepositoryImpl(
         val idToken = SimpleJwtSingleton.instance.sign(user.id)
         return LoginResponse(userId = user.id, phonePrefix = user.phoneCountryPrefix, phone = user.phoneNumber, authToken = idToken)
     }
+
+    override fun getUserById(id: String): User? = userDao.getUserById(id = id)
 }

@@ -10,4 +10,6 @@ object CommonMapper {
         )
     }
 
+    fun toId(idDto: IdDto) = idDto.id
+
 }

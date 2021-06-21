@@ -12,6 +12,7 @@ object Settings {
     /** User Routes */
     const val USER_REGISTER = "/user/new"
     const val USER_LOGIN = "/user/login"
+    const val USER_GET_BY_ID = "/user/get_by_id"
 
     /** Competition Routes*/
     const val COMPETITION_NEW = "/competition/new"

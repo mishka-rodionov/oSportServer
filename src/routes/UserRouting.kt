@@ -1,5 +1,6 @@
 package routes
 
+import app.Settings.USER_GET_BY_ID
 import app.Settings.USER_LOGIN
 import app.Settings.USER_REGISTER
 import data.auth.ApiException
@@ -28,6 +29,20 @@ fun Routing.users(userRepository: UserRepository) {
             println("api exception")
         }
 
+    }
+
+    post(USER_GET_BY_ID) {
+        try {
+            call.respond(
+                UserMapper.toResponse(
+                    userRepository.getUserById(
+                        CommonMapper.toId(call.receive())
+                    ) ?: throw ApiException("user not found")
+                )
+            )
+        } catch (e: ApiException) {
+            println("api exception: message = ${e.apiMessage}")
+        }
     }
 
 }
