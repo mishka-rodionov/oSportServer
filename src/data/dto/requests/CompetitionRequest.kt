@@ -10,7 +10,7 @@ data class CompetitionRequest(
     val date: String,
     @SerializedName("state")
     val state: CompetitionState? = null,
-    @SerializedName("main_request")
+    @SerializedName("main_image")
     val mainImage: String? = null,
     @SerializedName("sport_type")
     val sportType: String,
@@ -20,6 +20,8 @@ data class CompetitionRequest(
     val startInterval: Float,
     @SerializedName("organizers")
     val organizers: List<OrganizerDto>,
+    @SerializedName("title")
+    val title: String,
 //    @SerializedName("participants_groups")
 //    val participantGroups: List<String>,
     @SerializedName("description")

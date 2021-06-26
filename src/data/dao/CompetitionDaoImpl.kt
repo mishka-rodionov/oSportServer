@@ -21,6 +21,7 @@ class CompetitionDaoImpl : CompetitionDao {
             CompetitionEntity.insert {
                 it[id] = competition.id
                 it[date] = competition.date.toString() //TODO replace on format date to dd.mm.yyyy hh:mm
+                it[title] = competition.title
                 it[state] = competition.state.name
                 it[mainImage] = competition.mainImage.toString()
                 it[sportType] = competition.sportType

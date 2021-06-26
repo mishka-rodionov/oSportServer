@@ -29,6 +29,7 @@ object CompetitionMapper {
             organizers = organizers.map {
                 toOrganizerModel(it, newId)
             },
+            title = title,
 //            groups = participantGroups.map {
 //                ParticipantGroup.valueOf(it)
 //            },
@@ -45,6 +46,7 @@ object CompetitionMapper {
             sportType = this[CompetitionEntity.sportType],
             place = Gson().fromJson<Place>(this[CompetitionEntity.place]),
             organizers = Gson().fromJson<List<Organizer>>(this[CompetitionEntity.organizers]),
+            title = this[CompetitionEntity.title],
 //            groups = ,
             startInterval = this[CompetitionEntity.startInterval],
             description = this[CompetitionEntity.description]

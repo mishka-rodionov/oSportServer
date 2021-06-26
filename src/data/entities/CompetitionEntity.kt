@@ -12,6 +12,7 @@ object CompetitionEntity: Table(name = "competitions") {
     val place: Column<String> = text("place")
     val startInterval: Column<Float> = float("start_interval")
     val organizers: Column<String> = text("organizers")
+    val title: Column<String> = text("title")
 //    val participants: Column<String> = text("participants")
 //    val startList: Column<String> = text("start_list")
 //    val results: Column<String> = text("results")
