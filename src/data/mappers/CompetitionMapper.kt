@@ -4,8 +4,9 @@ import app.extensions.fromJson
 import app.utils.DateTimeFormatter
 import com.google.gson.Gson
 import data.dto.OrganizerDto
-import data.dto.requests.CompetitionRequest
+import data.dto.requests.CompetitionNewRequest
 import data.dto.requests.ParticipantRequest
+import data.dto.response.CompetitionShortResponse
 import data.entities.CompetitionEntity
 import data.entities.ParticipantEntity
 import data.entities.StartListEntity
@@ -15,8 +16,8 @@ import java.util.*
 
 object CompetitionMapper {
 
-    fun toModel(competitionRequest: CompetitionRequest) = competitionRequest.run {
-        println(competitionRequest)
+    fun toModel(competitionNewRequest: CompetitionNewRequest) = competitionNewRequest.run {
+        println(competitionNewRequest)
         val newId = UUID.randomUUID().toString()
         Competition(
             id = newId,
@@ -81,7 +82,7 @@ object CompetitionMapper {
         )
     }
 
-    fun toStartListItem(participant: Participant, startTime: Float) = participant.run {
+    fun toStartListItem(participant: Participant, startTime: Double) = participant.run {
         StartListItem(
             userId = userId,
             competitionId = competitionId,
@@ -98,6 +99,17 @@ object CompetitionMapper {
             row[StartListEntity.startTime],
             ParticipantGroup.valueOf(row[StartListEntity.participantGroup]),
             row[StartListEntity.description]
+        )
+    }
+
+    fun toShortResponse(competition: Competition) = competition.run {
+        CompetitionShortResponse(
+            id = id,
+            image = mainImage,
+            title = title,
+            date = date.toString(), //TODO set normal date formatter
+            time = "", //TODO set normal time formatter
+            details = description ?: ""
         )
     }
 

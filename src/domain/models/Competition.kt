@@ -12,7 +12,7 @@ data class Competition(
         val organizers: List<Organizer>,
         val title: String,
 //        val groups: List<ParticipantGroup>,
-        val startInterval: Float,
+        val startInterval: Double,
 //        val participants: List<Participant>? = null,
 //        val startList: List<Participant>? = null,
 //        val results: List<Participant>? = null,

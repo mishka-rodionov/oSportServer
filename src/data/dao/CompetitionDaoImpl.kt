@@ -12,6 +12,8 @@ import domain.models.Participant
 import domain.models.StartListItem
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.selectBatched
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class CompetitionDaoImpl : CompetitionDao {
@@ -25,6 +27,8 @@ class CompetitionDaoImpl : CompetitionDao {
                 it[state] = competition.state.name
                 it[mainImage] = competition.mainImage.toString()
                 it[sportType] = competition.sportType
+                it[startInterval] = competition.startInterval
+                it[organizers] = competition.organizers.toString() //TODO replace on properly formatting list of organizers
                 it[place] = competition.place.toString()
                 it[description] = competition.description.toString()
             }
@@ -86,7 +90,14 @@ class CompetitionDaoImpl : CompetitionDao {
 
     override fun getStartList(competitionId: String): List<StartListItem> {
         return transaction {
-            StartListEntity.select { StartListEntity.competitionId eq competitionId }.map(CompetitionMapper::toStartListItem)
+            StartListEntity.select { StartListEntity.competitionId eq competitionId }
+                .map(CompetitionMapper::toStartListItem)
+        }
+    }
+
+    override suspend fun getCompetitions(skip: Int, limit: Int): List<Competition> {
+        return transaction {
+            CompetitionEntity.selectAll().limit(limit, skip.toLong()).map(CompetitionMapper::toModel)
         }
     }
 }

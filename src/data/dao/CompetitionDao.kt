@@ -17,4 +17,6 @@ interface CompetitionDao {
 
     fun setStartList(startList: List<StartListItem>)
     fun getStartList(competitionId: String): List<StartListItem>
+
+    suspend fun getCompetitions(skip: Int, limit: Int): List<Competition>
 }

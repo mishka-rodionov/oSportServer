@@ -1,6 +1,8 @@
 package data.repository
 
 import data.dao.CompetitionDao
+import data.dto.requests.CompetitionRequest
+import data.dto.response.CompetitionShortResponse
 import data.mappers.CompetitionMapper
 import domain.CompetitionRepository
 import domain.models.Competition
@@ -11,6 +13,7 @@ class CompetitionRepositoryImpl(
 ) : CompetitionRepository {
 
     override fun createNewCompetition(newCompetition: Competition): String {
+        println("start interval = ${newCompetition.startInterval}")
         competitionDao.setCompetition(newCompetition)
         competitionDao.setOrganizers(newCompetition.organizers)
         return newCompetition.id
@@ -36,4 +39,8 @@ class CompetitionRepositoryImpl(
     override fun getParticipants(competitionId: String) = competitionDao.getParticipants(competitionId)
 
     override fun getStartList(competitionId: String) = competitionDao.getStartList(competitionId)
+
+    override suspend fun getCompetitions(competitionRequest: CompetitionRequest): List<CompetitionShortResponse> {
+        return competitionDao.getCompetitions(competitionRequest.skip, competitionRequest.limit).map(CompetitionMapper::toShortResponse)
+    }
 }
