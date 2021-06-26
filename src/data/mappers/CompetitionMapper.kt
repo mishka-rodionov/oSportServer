@@ -41,12 +41,15 @@ object CompetitionMapper {
     fun toModel(row: ResultRow) = row.run {
         Competition(
             id = this[CompetitionEntity.id],
-            date = DateTimeFormatter.parse(this[CompetitionEntity.date]),
+//            date = DateTimeFormatter.parse(this[CompetitionEntity.date]),
+            date = Date(),
             state = CompetitionState.valueOf(this[CompetitionEntity.state]),
             mainImage = this[CompetitionEntity.mainImage],
             sportType = this[CompetitionEntity.sportType],
-            place = Gson().fromJson<Place>(this[CompetitionEntity.place]),
-            organizers = Gson().fromJson<List<Organizer>>(this[CompetitionEntity.organizers]),
+//            place = Gson().fromJson<Place>(this[CompetitionEntity.place]),
+            place = Place("Saratov", Coordinate(55.44, 52.65)),
+//            organizers = Gson().fromJson<List<Organizer>>(this[CompetitionEntity.organizers]),
+            organizers = emptyList(),
             title = this[CompetitionEntity.title],
 //            groups = ,
             startInterval = this[CompetitionEntity.startInterval],
