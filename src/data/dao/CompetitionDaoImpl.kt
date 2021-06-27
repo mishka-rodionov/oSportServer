@@ -20,18 +20,7 @@ class CompetitionDaoImpl : CompetitionDao {
 
     override fun setCompetition(competition: Competition) {
         transaction {
-            CompetitionEntity.insert {
-                it[id] = competition.id
-                it[date] = competition.date.toString() //TODO replace on format date to dd.mm.yyyy hh:mm
-                it[title] = competition.title
-                it[state] = competition.state.name
-                it[mainImage] = competition.mainImage.toString()
-                it[sportType] = competition.sportType
-                it[startInterval] = competition.startInterval
-                it[organizers] = competition.organizers.toString() //TODO replace on properly formatting list of organizers
-                it[place] = competition.place.toString()
-                it[description] = competition.description.toString()
-            }
+            CompetitionMapper.toEntity(competition)
         }
     }
 

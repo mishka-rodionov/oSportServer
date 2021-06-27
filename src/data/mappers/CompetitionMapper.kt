@@ -1,7 +1,9 @@
 package data.mappers
 
 import app.extensions.fromJson
+import app.utils.DateFormatter
 import app.utils.DateTimeFormatter
+import app.utils.TimeFormatter
 import com.google.gson.Gson
 import data.dto.OrganizerDto
 import data.dto.requests.CompetitionNewRequest
@@ -12,6 +14,7 @@ import data.entities.ParticipantEntity
 import data.entities.StartListEntity
 import domain.models.*
 import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.insert
 import java.util.*
 
 object CompetitionMapper {
@@ -21,7 +24,7 @@ object CompetitionMapper {
         val newId = UUID.randomUUID().toString()
         Competition(
             id = newId,
-            date = Date(),
+            date = DateTimeFormatter.parse(date),
             state = state ?: CompetitionState.CREATED,
             mainImage = mainImage,
             sportType = sportType,
@@ -41,8 +44,7 @@ object CompetitionMapper {
     fun toModel(row: ResultRow) = row.run {
         Competition(
             id = this[CompetitionEntity.id],
-//            date = DateTimeFormatter.parse(this[CompetitionEntity.date]),
-            date = Date(),
+            date = DateTimeFormatter.parse(this[CompetitionEntity.date]),
             state = CompetitionState.valueOf(this[CompetitionEntity.state]),
             mainImage = this[CompetitionEntity.mainImage],
             sportType = this[CompetitionEntity.sportType],
@@ -55,6 +57,21 @@ object CompetitionMapper {
             startInterval = this[CompetitionEntity.startInterval],
             description = this[CompetitionEntity.description]
         )
+    }
+
+    fun toEntity(competition: Competition) = competition.run {
+        CompetitionEntity.insert {
+            it[id] = competition.id
+            it[date] = DateTimeFormatter.format(competition.date)
+            it[title] = competition.title
+            it[state] = competition.state.name
+            it[mainImage] = competition.mainImage.toString()
+            it[sportType] = competition.sportType
+            it[startInterval] = competition.startInterval
+            it[organizers] = competition.organizers.toString() //TODO replace on properly formatting list of organizers
+            it[place] = competition.place.toString()
+            it[description] = competition.description.toString()
+        }
     }
 
     private fun toOrganizerModel(organizerDto: OrganizerDto, competitionId: String) = organizerDto.run {
@@ -110,8 +127,8 @@ object CompetitionMapper {
             id = id,
             image = mainImage,
             title = title,
-            date = date.toString(), //TODO set normal date formatter
-            time = "", //TODO set normal time formatter
+            date = DateFormatter.format(date),
+            time = TimeFormatter.format(date), 
             details = description ?: ""
         )
     }
