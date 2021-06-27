@@ -128,7 +128,7 @@ object CompetitionMapper {
             image = mainImage,
             title = title,
             date = DateFormatter.format(date),
-            time = TimeFormatter.format(date), 
+            time = TimeFormatter.format(date),
             details = description ?: ""
         )
     }

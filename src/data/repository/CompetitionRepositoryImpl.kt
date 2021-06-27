@@ -41,6 +41,6 @@ class CompetitionRepositoryImpl(
     override fun getStartList(competitionId: String) = competitionDao.getStartList(competitionId)
 
     override suspend fun getCompetitions(competitionRequest: CompetitionRequest): List<CompetitionShortResponse> {
-        return competitionDao.getCompetitions(competitionRequest.skip, competitionRequest.limit).map(CompetitionMapper::toShortResponse)
+        return competitionDao.getCompetitions(competitionRequest.offset, competitionRequest.limit).map(CompetitionMapper::toShortResponse)
     }
 }
